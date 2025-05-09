@@ -21,7 +21,8 @@ In this project, **Terratest** is used to validate the resources created by **Te
 ```. 
 ├── .github/workflows/ # CI pipeline definition 
 ├── terraform/ # Terraform code to provision S3 
-├── static-site/ # HTML files for the website 
+├── static-site/ # HTML files for the website
+├── tests/ # terratest verification of s3
 └── README.md # This file
 ```
 
