@@ -23,11 +23,11 @@ This project is a hands-on Proof of Concept (POC) showcasing a complete CI/CD pi
 
 ## 📦 Requirements
 
-'- **AWS account** with IAM user configured for S3 and Terraform permissions
+- **AWS account** with IAM user configured for S3 and Terraform permissions
 - **GitHub repository secrets set:**
   - `AWS_ACCESS_KEY_ID`
   - `AWS_SECRET_ACCESS_KEY`
-  - `S3_BUCKET`'
+  - `S3_BUCKET`
 
 ---
 
