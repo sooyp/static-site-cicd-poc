@@ -29,3 +29,8 @@ jobs:
     - name: Terraform Apply (Create S3 bucket and infras)
       run: terraform apply tfplan
       working-directory: ./terraform
+
+    - name: Run Terratest to Validate S3 Bucket Creation
+      run: |
+        cd tests
+        go test -v
