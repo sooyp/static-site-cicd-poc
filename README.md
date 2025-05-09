@@ -16,7 +16,8 @@ This project is a hands-on Proof of Concept (POC) showcasing a complete CI/CD pi
 ├── .github/workflows/ # CI pipeline definition 
 ├── terraform/ # Terraform code to provision S3 
 ├── static-site/ # HTML files for the website 
-└── README.md # This file```
+└── README.md # This file
+```
 
 ---
 
