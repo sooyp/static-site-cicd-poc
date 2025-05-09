@@ -60,7 +60,7 @@ jobs:
       env:
         S3_BUCKET: ${{ secrets.S3_BUCKET }}
 
-    - name: Run Terratest to Validate S3 Bucket Creation
+    - name: Run Terratest to Validate S3 Bucket Creation - potentially overkill
       run: |
         cd tests
         go test -v
