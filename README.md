@@ -66,4 +66,4 @@ This project is fully functional and used as a live demonstration of deploying c
 
 ## 🙋‍♂️ Author
 
-Maintained by [Your Name] for demonstration purposes. Contributions and feedback are welcome!
+Maintained by Lee Broom for demonstration purposes. Contributions and feedback are welcome!
