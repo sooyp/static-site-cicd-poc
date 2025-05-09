@@ -33,7 +33,7 @@ This project is a hands-on Proof of Concept (POC) showcasing a complete CI/CD pi
 
 ## 🔧 How It Works
 
-### On Push to `main` Branch:
+### On Push to `develop` Branch:
 
 1. **Terraform Init & Apply**
    - Initializes and applies S3 bucket configuration
@@ -45,23 +45,27 @@ This project is a hands-on Proof of Concept (POC) showcasing a complete CI/CD pi
 
 ## 🌐 Static Site Example
 
-The `static-site/index.html` contains a placeholder welcome page. After deployment, your site will be accessible via the S3 website endpoint.
+The `static-site/index.html` contains a placeholder welcome page. After deployment, this site will be accessible via the S3 website endpoint.
 
 ---
+## GitHub Setup Needed
+Create two environments in GitHub > Settings > Environments:
 
-## 🧪 Running Locally
+  - dev
+  - prod
 
-You can run the Terraform commands locally by following these steps:
+In each environment, add the following secrets:
+  - AWS_ACCESS_KEY_ID
+  - AWS_SECRET_ACCESS_KEY
+  - S3_BUCKET (specific to each env)
 
-1. Install Terraform: https://learn.hashicorp.com/tutorials/terraform/install-cli
-2. Initialize Terraform: `terraform init`
-3. Apply Terraform configuration: `terraform apply`
+Optionally add required reviewers for the prod environment to enforce approval gates.
 
 ---
 
 ## ✅ Status
 
-This project is fully functional and used as a live demonstration of deploying cloud-native infrastructure with CI/CD.
+This project is to provide a fully functional and used as a live demonstration of deploying cloud-native infrastructure with CI/CD.
 
 ---
 
