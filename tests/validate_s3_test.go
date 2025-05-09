@@ -1,43 +1,43 @@
 package test
 
 import (
-	"fmt"
 	"testing"
+	"fmt"
 
-	"github.com/gruntwork-io/terratest/modules/terraform"
-	"github.com/gruntwork-io/terratest/modules/testing"
-	"github.com/gruntwork-io/terratest/modules/aws"
+	terratest_aws "github.com/gruntwork-io/terratest/modules/aws"
+	terratest_terraform "github.com/gruntwork-io/terratest/modules/terraform"
 	"github.com/stretchr/testify/assert"
 )
 
-func TestS3Bucket(t *testing.T) {
-	// Define the path to the Terraform code
-	terraformOptions := &terraform.Options{
-		// Path to the Terraform code
+func TestCheckS3(t *testing.T) {
+	// hardcoded for now
+	env := "dev"
+	region := "eu-west-1"
+	bucketName := "my-static-website-" + env
+
+	tfOptions := &terratest_terraform.Options{
 		TerraformDir: "../terraform",
 
-		// Variables to pass to our Terraform configuration
 		Vars: map[string]interface{}{
-			"s3_bucket_name": "my-unique-bucket-name", // Replace with a unique bucket name
+			"environment": env,
 		},
 
-		// Variables to pass to Terraform
 		EnvVars: map[string]string{
-			"AWS_DEFAULT_REGION": eu-west-1", // Set this AWS region
+			"AWS_DEFAULT_REGION": region,
 		},
 
-		// Disable colors in Terraform commands so its readable in logs
 		NoColor: true,
 	}
+	// Safety check to skip test for production
+	if env == "prod" || env == "production" {
+		t.Skip("Skipping Terratest against production environment for safety.")
+	}
+	// Apply the Terraform code
+	terratest_terraform.InitAndApply(t, tfOptions)
 
-	// First, initialize and apply the Terraform code
-	terraform.InitAndApply(t, terraformOptions)
+	// S3 check bit
+	doesExist := terratest_aws.DoesS3BucketExist(t, region, bucketName)
 
-	// Now check if the S3 bucket exists
-	bucket := aws.GetS3Bucket(t, terraformOptions.Vars["s3_bucket_name"].(string))
-
-	// Validate the bucket properties (check if public access is blocked)
-	assert.NotNil(t, bucket)
-	assert.Equal(t, "my-unique-bucket-name", *bucket.Name)
+	// Not sure if this is enough, might need more validation later
+	assert.True(t, doesExist, fmt.Sprintf("Bucket %s should exist but doesn't", bucketName))
 }
-
