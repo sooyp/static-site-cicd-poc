@@ -5,6 +5,12 @@ variable "environment" {
   default     = "dev"
 }
 
+# Define a variable for the AWS region
+variable "aws_region" {
+  description = "The AWS region where resources will be provisioned"
+  type        = string
+}
+
 # Define a variable for the S3 bucket name
 variable "s3_bucket_name" {
   description = "The name of the S3 bucket to be created"
