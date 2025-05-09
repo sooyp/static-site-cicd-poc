@@ -11,6 +11,12 @@ This project is a hands-on Proof of Concept (POC) showcasing a complete CI/CD pi
 
 ---
 
+## Golang and Terratest Setup
+
+In this project, **Terratest** is used to validate the resources created by **Terraform**. Terratest is written in **Go**, so you need to have **Go** installed in the CI/CD pipeline github runner.
+
+---
+
 ## 🗂️ Structure
 ```. 
 ├── .github/workflows/ # CI pipeline definition 
