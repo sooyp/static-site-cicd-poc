@@ -1,0 +1,29 @@
+name: Setup S3 Infrastructure
+
+on:
+  workflow_dispatch: # Manually triggered from the GitHub UI
+
+jobs:
+  setup-s3:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.8.1
+
+    - name: Terraform Init
+      run: terraform init
+      working-directory: ./terraform
+
+    - name: Terraform Plan
+      run: terraform plan -out=tfplan
+      working-directory: ./terraform
+
+    - name: Terraform Apply (Create S3 bucket and infras)
+      run: terraform apply tfplan
+      working-directory: ./terraform
