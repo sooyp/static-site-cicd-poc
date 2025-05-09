@@ -1,29 +1,23 @@
-name: Setup S3 Infrastructure
+provider "aws" {
+  region = var.aws_region
+}
 
-on:
-  workflow_dispatch: # Manually triggered from the GitHub UI
+resource "aws_s3_bucket" "static_website" {
+  bucket = var.s3_bucket_name
+  acl    = "public-read"
 
-jobs:
-  setup-s3:
-    runs-on: ubuntu-latest
+  website {
+    index_document = var.website_index_document
+    # Specify the error document for the website
+    error_document = var.website_error_document
+  }
+}
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+resource "aws_s3_bucket_object" "static_website_files" {
+  for_each = fileset("./static-site", "**/*")
 
-    - name: Set up Terraform
-      uses: hashicorp/setup-terraform@v2
-      with:
-        terraform_version: 1.8.1
-
-    - name: Terraform Init
-      run: terraform init
-      working-directory: ./terraform
-
-    - name: Terraform Plan
-      run: terraform plan -out=tfplan
-      working-directory: ./terraform
-
-    - name: Terraform Apply (Create S3 bucket and infras)
-      run: terraform apply tfplan
-      working-directory: ./terraform
+  bucket = aws_s3_bucket.static_website.bucket
+  key    = each.value
+  source = "./static-site/${each.value}"
+  acl    = "public-read"
+}
