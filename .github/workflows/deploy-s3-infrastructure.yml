@@ -1,4 +1,3 @@
-
 name: Setup S3 Infrastructure
 
 on:
@@ -24,6 +23,10 @@ jobs:
       uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: 1.8.1
+
+    - name: Show Terraform Provider Version
+      run: terraform providers
+      working-directory: ./terraform
 
     - name: Terraform Init
       run: terraform init -upgrade
