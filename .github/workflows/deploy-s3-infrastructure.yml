@@ -32,6 +32,9 @@ jobs:
     - name: Install Go (Terratest)
       run: sudo apt-get install -y golang
 
+    - name: Confirm AWS Account
+      run: aws sts get-caller-identity
+
     - name: Terraform Plan
       run: terraform plan -var="aws_region=eu-west-1" -out=tfplan
       working-directory: ./terraform
