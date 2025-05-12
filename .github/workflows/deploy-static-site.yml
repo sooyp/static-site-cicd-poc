@@ -36,7 +36,7 @@ jobs:
       working-directory: ./terraform
       
     - name: Install Go (Terratest)
-        run: sudo apt-get install -y golang
+      run: sudo apt-get install -y golang
 
     - name: Terraform Plan
       run: terraform plan -out=tfplan
