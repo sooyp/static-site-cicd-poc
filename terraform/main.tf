@@ -9,6 +9,8 @@ terraform {
       version = ">= 4.44.0"
     }
   }
+
+  required_version = ">= 1.3.0"
 }
 
 resource "aws_s3_bucket" "static_website" {
