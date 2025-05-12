@@ -15,7 +15,6 @@ variable "aws_region" {
 variable "s3_bucket_name" {
   description = "The name of the S3 bucket to be created"
   type        = string
-  default     = "my-static-website-${var.environment}"
 }
 
 # Define a variable for the static website index document
