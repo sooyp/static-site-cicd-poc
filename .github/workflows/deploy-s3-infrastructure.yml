@@ -40,7 +40,7 @@ jobs:
       working-directory: ./terraform
 
     - name: Terraform Apply (Create S3 bucket and infras)
-      run: terraform apply tfplan
+      run: terraform apply -var="aws_region=eu-west-1" -var="s3_bucket_name=my-static-site-${{ github.ref_name }}" -var="environment={{ github.ref_name }}" -out=tfplan
       working-directory: ./terraform
 
     - name: Run Terratest to Validate S3 Bucket Creation
