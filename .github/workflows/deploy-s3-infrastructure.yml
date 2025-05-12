@@ -33,7 +33,7 @@ jobs:
       run: sudo apt-get install -y golang
 
     - name: Terraform Plan
-      run: terraform plan -var="aws_region=eu-west-1" tfplan
+      run: terraform plan -var="aws_region=eu-west-1" -out=tfplan
       working-directory: ./terraform
 
     - name: Terraform Apply (Create S3 bucket and infras)
